@@ -4,8 +4,6 @@
 
 To design and implement an **Automatic Vehicle Parking System using STM32 Nucleo-L031K6** that detects the occupancy of parking slots, determines the number of available spaces, and indicates when the parking area is full.
 
----
-
 ## Components Required
 
 - STM32 Nucleo-L031K6
@@ -14,8 +12,6 @@ To design and implement an **Automatic Vehicle Parking System using STM32 Nucleo
 - Wokwi Simulator
 - Connecting wires
 - Serial Monitor
-
----
 
 ## Theory
 
@@ -36,8 +32,8 @@ The STM32 calculates the number of available parking spaces. When both parking s
 
 The parking-slot information is also displayed on the **Wokwi Serial Monitor** using UART communication.
 
----
-## Program
+## Program 
+
 ```
 
 // Automatic Vehicle Parking System
@@ -429,10 +425,8 @@ int _write(int file, uint8_t *ptr, int len)
 
   return -1;
 }
-
-
-
 ```
+
 ## Pin Configuration
 
 | Component | STM32 Pin | Function |
@@ -443,8 +437,6 @@ int _write(int file, uint8_t *ptr, int len)
 | USART2 TX | PA2 | Serial Data Transmission |
 | USART2 RX | PA15 | Serial Data Reception |
 | Pushbutton Common | GND | Ground |
-
----
 
 ## Block Diagram
 
@@ -479,8 +471,6 @@ int _write(int file, uint8_t *ptr, int len)
       Indicator        Parking Status
 ~~~
 
----
-
 ## Parking Status Conditions
 
 | Slot 1 | Slot 2 | Available Slots | Parking Status | LED |
@@ -489,8 +479,6 @@ int _write(int file, uint8_t *ptr, int len)
 | Occupied | Available | 1 | Space Available | OFF |
 | Available | Occupied | 1 | Space Available | OFF |
 | Occupied | Occupied | 0 | Parking Full | ON |
-
----
 
 ## Algorithm
 
@@ -511,8 +499,6 @@ int _write(int file, uint8_t *ptr, int len)
 15. If at least one parking slot is available, keep the LED **OFF**.
 16. Display the slot status and number of available spaces on the Serial Monitor.
 17. Repeat the process continuously.
-
----
 
 ## Circuit Connections
 
@@ -537,8 +523,6 @@ int _write(int file, uint8_t *ptr, int len)
 | Onboard LED | PB3 |
 
 The program uses **internal pull-up resistors** for the pushbutton inputs. Therefore, external pull-up resistors are not required.
-
----
 
 ## Circuit Diagram
 
@@ -582,8 +566,6 @@ GND  ---|             |
               Serial Monitor
 ~~~
 
----
-
 ## Pushbutton Logic
 
 The pushbuttons are configured using the STM32 **internal pull-up resistors**.
@@ -622,8 +604,6 @@ LED = ON
 
 Pressing the corresponding pushbutton again changes the slot status back to **AVAILABLE**, simulating a vehicle leaving the parking slot.
 
----
-
 ## Why Pushbuttons Are Used
 
 In an actual Automatic Vehicle Parking System, vehicle detection is normally performed using sensors such as:
@@ -650,8 +630,6 @@ PB3 LED                ->   Parking Full Indicator
 
 This makes it easy to understand and test the parking-control logic without requiring an actual vehicle sensor.
 
----
-
 ## Procedure
 
 1. Open the **Wokwi Simulator**.
@@ -671,8 +649,6 @@ This makes it easy to understand and test the parking-control logic without requ
 15. Observe the parking-slot status on the Serial Monitor.
 16. Verify that the onboard LED turns **ON when both parking slots are occupied**.
 17. Press a slot button again to simulate the vehicle leaving the parking space.
-
----
 
 ## Expected Output
 
@@ -708,8 +684,6 @@ Entry Gate: CLOSED
 
 The onboard LED connected to **PB3** turns **ON** when the parking area is full.
 
----
-
 ## Working
 
 The two pushbuttons simulate vehicle-detection sensors for two parking slots. The STM32 continuously monitors the pushbuttons through the GPIO input pins **PA12** and **PB0**.
@@ -728,8 +702,6 @@ If one or more parking slots are available, the LED remains **OFF**.
 
 The status of each parking slot, number of available spaces, parking condition, and entry-gate status are transmitted through **USART2** and displayed on the **Wokwi Serial Monitor**.
 
----
-
 ## Applications
 
 - Shopping mall parking systems
@@ -739,8 +711,6 @@ The status of each parking slot, number of available spaces, parking condition, 
 - Airport parking systems
 - Smart city parking systems
 - Residential parking management
-
----
 
 ## Result
 
